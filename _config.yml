@@ -23,7 +23,7 @@ repository               : "MuzaffarHQureshi/muzaffarqureshi.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "picture.jpg"
   name             : "Muzaffar Qureshi"
   pronouns         : # example: "she/her"  
   bio              : "Robotics and control researcher working on autonomous systems."
