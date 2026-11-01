@@ -1,0 +1,6 @@
+"SCC.Qureshi.Ogri.RAL":
+  arxiv: "2610.31920"
+  video: "https://youtu.be/CKP7FaPYd3Y"
+  image: "/images/publications/ral.png"
+  caption: "Selected experimental results from Gaussian process regression under deterministic input bias."
+  highlight: "Bias-aware Gaussian process regression for improved prediction and uncertainty-aware robotic mapping."

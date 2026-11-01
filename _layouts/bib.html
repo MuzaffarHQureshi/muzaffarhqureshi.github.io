@@ -1,0 +1,186 @@
+
+{% assign media = site.data.publication_media[key] %}
+
+<!-- IEEE-formatted citation -->
+<div class="pub-reference">
+  {{ reference | replace_first: ']', ']&nbsp;&nbsp;' }}
+</div>
+
+<!-- Research highlight -->
+{% if media.highlight %}
+  <p class="pub-highlight">
+    {{ media.highlight | escape }}
+  </p>
+{% endif %}
+
+<!-- Research figure or experiment image -->
+{% if media.image %}
+  <figure class="pub-preview">
+    <a href="{{ media.image | relative_url }}"
+       target="_blank"
+       rel="noopener noreferrer">
+
+      <img
+        src="{{ media.image | relative_url }}"
+        alt="{{ media.caption | default: entry.title | default: 'Research figure' | escape }}"
+        loading="lazy">
+    </a>
+
+    {% if media.caption %}
+      <figcaption>
+        {{ media.caption | escape }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}
+
+<!-- Publication status -->
+{% assign status_text = entry.status | default: '' | downcase %}
+{% assign venue = entry.journal | default: '' | downcase %}
+{% assign note = entry.note | default: '' | downcase %}
+
+{% if status_text contains 'review' or venue contains 'under review' or note contains 'under review' %}
+  <span class="pub-status">Under Review</span>
+
+{% elsif status_text contains 'accept' or venue contains 'accepted' or note contains 'accepted' %}
+  <span class="pub-status">Accepted</span>
+
+{% elsif status_text contains 'preprint' or note contains 'preprint' %}
+  <span class="pub-status">Preprint</span>
+{% endif %}
+
+
+<!-- Published paper or publisher URL -->
+{% assign publication_url = media.paper | default: entry.paper | default: entry.pdf | default: '' | strip %}
+{% assign doi_text = entry.doi | default: '' | strip %}
+{% assign general_url = entry.url | default: '' | strip %}
+
+{% if publication_url == '' and doi_text != '' %}
+  {% assign doi_start = doi_text | slice: 0, 4 %}
+
+  {% if doi_start == 'http' %}
+    {% assign publication_url = doi_text %}
+  {% else %}
+    {% assign publication_url = 'https://doi.org/' | append: doi_text %}
+  {% endif %}
+{% endif %}
+
+{% unless general_url contains 'arxiv.org' %}
+  {% if publication_url == '' and general_url != '' %}
+    {% assign publication_url = general_url %}
+  {% endif %}
+{% endunless %}
+
+
+<!-- arXiv preprint detection -->
+{% assign arxiv_id = media.arxiv | default: entry.arxiv | default: entry.eprint | default: '' | strip %}
+
+{% if arxiv_id == '' %}
+  {% assign howpublished = entry.howpublished | default: '' %}
+
+  {% if howpublished contains 'arXiv:' or howpublished contains 'ar{X}iv:' %}
+    {% assign arxiv_id = howpublished | remove: 'ar{X}iv:' | remove: 'arXiv:' | remove: '{' | remove: '}' | strip %}
+  {% endif %}
+{% endif %}
+
+{% if arxiv_id == '' %}
+  {% assign raw_note = entry.note | default: '' %}
+
+  {% if raw_note contains 'arXiv:' %}
+    {% assign arxiv_id = raw_note | remove: 'see' | remove: '{' | remove: '}' | remove: 'arXiv:' | strip %}
+  {% endif %}
+{% endif %}
+
+{% if arxiv_id == '' and general_url contains 'arxiv.org' %}
+  {% assign arxiv_id = general_url %}
+{% endif %}
+
+{% if arxiv_id != '' %}
+  {% unless arxiv_id contains 'http' %}
+    {% assign arxiv_id = arxiv_id | remove: 'arXiv:' | remove: 'arxiv:' | strip %}
+    {% assign arxiv_id = 'https://arxiv.org/abs/' | append: arxiv_id %}
+  {% endunless %}
+{% endif %}
+
+
+<!-- Additional resources -->
+{% assign code_url = media.code | default: entry.code | default: '' | strip %}
+{% assign video_url = media.video | default: entry.video | default: '' | strip %}
+{% assign slides_url = media.slides | default: entry.slides | default: '' | strip %}
+{% assign poster_url = media.poster | default: entry.poster | default: '' | strip %}
+{% assign project_url = media.project | default: entry.project | default: '' | strip %}
+{% assign dataset_url = media.dataset | default: entry.dataset | default: '' | strip %}
+
+
+<!-- Publication resource buttons -->
+{% if publication_url != '' or arxiv_id != '' or code_url != '' or video_url != '' or slides_url != '' or poster_url != '' or project_url != '' or dataset_url != '' %}
+
+<div class="pub-links">
+
+  {% if publication_url != '' %}
+    <a href="{{ publication_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Paper
+    </a>
+  {% endif %}
+
+  {% if arxiv_id != '' %}
+    <a href="{{ arxiv_id | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      arXiv
+    </a>
+  {% endif %}
+
+  {% if code_url != '' %}
+    <a href="{{ code_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Code
+    </a>
+  {% endif %}
+
+  {% if video_url != '' %}
+    <a href="{{ video_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Video
+    </a>
+  {% endif %}
+
+  {% if slides_url != '' %}
+    <a href="{{ slides_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Slides
+    </a>
+  {% endif %}
+
+  {% if poster_url != '' %}
+    <a href="{{ poster_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Poster
+    </a>
+  {% endif %}
+
+  {% if project_url != '' %}
+    <a href="{{ project_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Project
+    </a>
+  {% endif %}
+
+  {% if dataset_url != '' %}
+    <a href="{{ dataset_url | escape }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      Dataset
+    </a>
+  {% endif %}
+
+</div>
+
+{% endif %}

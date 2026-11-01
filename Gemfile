@@ -11,3 +11,6 @@ end
 
 gem 'github-pages'
 gem 'connection_pool', '2.5.0'
+
+# Format and group Overleaf bibliography entries on the Publications page.
+gem 'jekyll-scholar', group: :jekyll_plugins

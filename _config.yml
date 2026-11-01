@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Muzaffar Qureshi"
+title                    : "Muzaffar H Qureshi"
 title_separator          : "-"
-name                     : &name "Muzaffar Qureshi"
-description              : &description "Personal website and professional portfolio of Muzaffar Qureshi."   # Update this with a general description of your site, this is the default if not overridden by a page
+name                     : &name "Muzaffar H Qureshi"
+description              : &description "Personal website and professional portfolio of Muzaffar H Qureshi."   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://muzaffarhqureshi.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -24,7 +24,7 @@ repository               : "MuzaffarHQureshi/muzaffarhqureshi.github.io"
 author:
   # Biographic information
   avatar           : "picture.jpg"
-  name             : "Muzaffar Qureshi"
+  name             : "Muzaffar H Qureshi"
   pronouns         : # example: "she/her"  
   bio              : "Robotics and control researcher working on autonomous systems."
   location         : "Gainesville, FL, USA"
@@ -221,6 +221,9 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
+  news:
+    output: true
+    permalink: /news/:name/
   teaching:
     output: true
     permalink: /:collection/:path/
@@ -359,3 +362,15 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
+# BibTeX-powered publications: raw Overleaf bibs go in _publication_sources/.
+scholar:
+  source: ./_bibliography
+  bibliography: "*.bib"
+  style: ieee
+  locale: en
+  sort_by: year
+  order: ascending
+  group_by: year
+  group_order: descending
+  bibliography_template: bib
