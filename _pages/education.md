@@ -5,12 +5,11 @@ permalink: /education/
 author_profile: true
 ---
 
-## Education
 
 ### Ph.D. in Mechanical Engineering
 **University of Florida**, Gainesville, Florida, USA
 
-*2022–Present | Expected Graduation: May 2027*
+<p><em>2022–Present — Expected Graduation: May 2027</em></p>
 
 - Advisor: Dr. Rushikesh Kamalapurkar
 - Research: Robotics, nonlinear control, Gaussian processes, safe reinforcement learning, and uncertainty quantification.
