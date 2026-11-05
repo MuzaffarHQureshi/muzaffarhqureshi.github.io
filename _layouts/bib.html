@@ -34,6 +34,39 @@
   </figure>
 {% endif %}
 
+
+<!-- Embedded research video -->
+{% if media.video_file %}
+  <figure class="pub-preview">
+
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      controls
+      preload="metadata"
+      style="display:block; max-width:100%;
+             max-height:320px; border-radius:10px;
+             border:1px solid #e2e8f0;">
+
+      <source
+        src="{{ media.video_file | relative_url }}"
+        type="video/mp4">
+
+      Your browser does not support HTML5 video.
+    </video>
+
+    {% if media.caption %}
+      <figcaption>
+        {{ media.caption | escape }}
+      </figcaption>
+    {% endif %}
+
+  </figure>
+{% endif %}
+
+
 <!-- Publication status -->
 {% assign status_text = entry.status | default: '' | downcase %}
 {% assign venue = entry.journal | default: '' | downcase %}

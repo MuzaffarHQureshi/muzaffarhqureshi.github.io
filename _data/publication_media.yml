@@ -1,6 +1,34 @@
+
 "SCC.Qureshi.Ogri.RAL":
   arxiv: "2610.31920"
   video: "https://youtu.be/CKP7FaPYd3Y"
-  image: "/images/publications/ral.png"
+  image: "/images/publications/RAL.gif"
   caption: "Selected experimental results from Gaussian process regression under deterministic input bias."
   highlight: "Bias-aware Gaussian process regression for improved prediction and uncertainty-aware robotic mapping."
+
+
+
+"10666509":
+  image: "/images/publications/CCTA.gif"
+  highlight: "Adaptive scalar-field mapping with avoidance of high-intensity regions."
+  caption: "Animated visualization of robotic scalar-field mapping and adaptive high-intensity region avoidance."
+
+
+
+"Qureshi2025FaultTolerant":
+  image: "/images/publications/Fault.gif"
+  highlight: "Reinforcement learning-based fault-tolerant control for quadcopters, supporting recovery from actuator faults."
+  caption: "Animated illustration of a quadcopter employing fault-tolerant control to recover from a rotor fault."
+
+
+
+"qureshi2027exposureawareipp":
+  image: "/images/publications/ICRA.gif"
+  highlight: "Exposure-aware informative path planning using deep reinforcement learning to balance information gathering, exploration, and radiation exposure."
+  caption: "Animated visualization of autonomous drone navigation through a spatial intensity field, illustrating exposure-aware informative path planning."
+
+
+"TCST":
+  video_file: "/images/publications/Robot_GP_Combined_ThreePlots.mp4"
+  highlight: "Safety-aware robotic scalar-field mapping using Gaussian processes and a Hough-transform approach."
+  caption: "Simulation demonstrating robotic field mapping, Gaussian-process estimation, and safety-aware navigation."
